@@ -12,10 +12,98 @@ const GithubProfileCard = dynamic(() =>
 );
 import { openSource } from "../portfolio";
 import SEO from "../components/SEO";
+import Particles from "react-tsparticles";
 
 export default function Home({ githubProfileData }) {
+	const particlesInit = (main) => {
+		console.log(main);
+	
+		// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+	  };
+	
+	  const particlesLoaded = (container) => {
+		console.log(container);
+	  };
 	return (
 		<div>
+		<Particles
+			id="tsparticles"
+			init={particlesInit}
+			loaded={particlesLoaded}
+			options={{
+		
+				fpsLimit: 120,
+				interactivity: {
+				events: {
+					onClick: {
+					enable: true,
+					mode: "push",
+					},
+					onHover: {
+					enable: true,
+					mode: "repulse",
+					},
+					resize: true,
+				},
+				modes: {
+					bubble: {
+					distance: 400,
+					duration: 2,
+					opacity: 0.8,
+					size: 40,
+					},
+					push: {
+					quantity: 4,
+					},
+					repulse: {
+					distance: 200,
+					duration: 0.4,
+					},
+				},
+				},
+				particles: {
+				color: {
+					value: "#325aa8",
+				},
+				links: {
+					color: "#325aa8",
+					distance: 150,
+					enable: true,
+					opacity: 1,
+					width: 2,
+				},
+				collisions: {
+					enable: true,
+				},
+				move: {
+					direction: "none",
+					enable: true,
+					outMode: "bounce",
+					random: false,
+					speed: 2,
+					straight: false,
+				},
+				number: {
+					density: {
+					enable: true,
+					area: 1000,
+					},
+					value: 60,
+				},
+				opacity: {
+					value: 1,
+				},
+				shape: {
+					type: "circle",
+				},
+				size: {
+					random: true,
+					value: 2,
+				},
+				},
+				detectRetina: true,
+			}}
+			/>
 			<SEO
 				data={{
 					title: "Ernestas Garjonis",
