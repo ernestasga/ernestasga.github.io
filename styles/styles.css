@@ -1,0 +1,6 @@
+body>div:first-child {
+    overflow-x: hidden;
+}
+.text-black {
+    color: black;
+}
