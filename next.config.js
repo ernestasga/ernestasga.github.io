@@ -2,7 +2,12 @@
 
 const nextConfig = {
     output: 'export',
-    distDir: 'build'
+    distDir: 'build',
+    images: {
+        unoptimized: true,
+        domains: ["avatars.githubusercontent.com"],
+    },
+
 }
 
 module.exports = nextConfig
