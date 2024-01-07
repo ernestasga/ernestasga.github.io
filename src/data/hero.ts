@@ -1,7 +1,7 @@
 const heroContent = {
 	name: "Ernestas Garjonis",
 	title: "Hi, my name is Ernestas",
-	subtitle: "Blockchain and machine learning hipster - I was into it before it was cool.",
+	subtitle: "Blockchain, cybersecurity and machine learning enthusiast.",
 	description:
 		`From a young age, my world has been intertwined with technology.
 		A natural curiosity always drove me to explore the inner workings of computers and gadgets,
@@ -11,7 +11,7 @@ const heroContent = {
 		In my downtime, I enjoy tinkering with my homelab or playing video games.
 		`,
 	resumeText: "SEE MY RESUME / CV",
-	resumeLink: "https://resume.io/r/1e2vgpixc",
+	resumeLink: "/files/Ernestas_Garjonis_resume_2024.pdf",
 };
 
 export default heroContent
