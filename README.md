@@ -6,6 +6,7 @@ Two methods for spinning up the development server are provided below. The first
 
 ### Docker
 ```bash
+docker-compose run app npm install
 docker-compose up
 ```
 
