@@ -14,10 +14,19 @@ export const projects: Project[] = [
         link: { name: "WEB", path: "https://searchfrom.com" },
     },
     {
+        name: "Home Assistant Integration",
+        desc: "Home Assistant integration for Solar Frontier solar panels",
+        github: "https://github.com/ernestasga/ha-solarfrontier"
+    },
+    {
+        name: "Solar Frontier API",
+        desc: "Python library to retrieve data from Solar Frontier solar panels",
+        github: "https://github.com/ernestasga/python-solarfrontier"
+    },
+    {
         name: "KadaIšeis.lt",
         desc: "An application for keeping track of tv series episode release dates",
         link: { name: "WEB", path: "https://kadaiseis.lt" },
-        link2: { name: "MOBILE", path: "https://play.google.com/store/apps/details?id=com.ernestasg.kadaiseis" },
     },
     {
         name: "Reivyčių Sodai",
