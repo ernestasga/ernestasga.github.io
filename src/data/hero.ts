@@ -1,17 +1,14 @@
 const heroContent = {
 	name: "Ernestas Garjonis",
-	title: "Hi, my name is Ernestas",
-	subtitle: "Blockchain, cybersecurity and machine learning enthusiast.",
+	title: "Hi, I'm Ernestas",
+	subtitle: "Full-Stack Developer | Blockchain, Cybersecurity & AI Enthusiast",
 	description:
-		`From a young age, my world has been intertwined with technology.
-		A natural curiosity always drove me to explore the inner workings of computers and gadgets,
-		constantly seeking ways to enhance their functionality. Beyond just a professional pursuit,
-		technology is a personal passion—I've built and meticulously maintain my own homelab. 
-		My enthusiasm for learning never wanes, and I'm perpetually on the lookout for new challenges.
-		In my downtime, I enjoy tinkering with my homelab or playing video games.
-		`,
+		`Technology has always been more than a career—it's my passion. From a young age, I’ve been driven by curiosity to understand how things work, constantly exploring ways to innovate and improve. 
+		As a self-taught developer, I’ve built a strong foundation in full-stack development while diving deep into emerging fields like blockchain, cybersecurity, and machine learning. 
+		My homelab serves as both a playground for experimentation and a testament to my dedication to hands-on learning.
+		When I'm not solving complex problems or building solutions, I enjoy gaming or refining my technical skills.`,
 	resumeText: "SEE MY RESUME / CV",
-	resumeLink: "/files/Ernestas_Garjonis_resume_2024.pdf",
+	resumeLink: "/files/Ernestas_Garjonis_resume_2025.pdf",
 };
 
-export default heroContent
+export default heroContent;

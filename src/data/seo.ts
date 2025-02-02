@@ -6,7 +6,7 @@ const seoConfig: Metadata = {
     // Open Graph (Facebook) metadata
     openGraph: {
         type: 'website',
-        url: 'https://ernestasga.github.io', // Replace with your website URL
+        url: 'https://ernestasga.github.io',
         title: 'Ernestas Garjonis - Software Engineer',
         description: 'Portfolio of Ernestas Garjonis, a software engineer specialized in web and mobile applications development.',
         images: [{url: 'https://ernestasga.github.io/img/background.png'}]
@@ -14,7 +14,7 @@ const seoConfig: Metadata = {
     // Twitter Card metadata
     twitter: {
         title: 'Ernestas Garjonis - Software Engineer',
-        site: '@yourHandle', // Replace with your Twitter handle
+        site: '@yourHandle',
         images: 'https://ernestasga.github.io/img/background.png',
     },
     keywords: [
