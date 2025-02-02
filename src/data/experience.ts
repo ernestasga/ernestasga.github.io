@@ -9,39 +9,42 @@ export const experienceContent = {
 
 export const experienceJobs: ExperienceJob[] = [
     {
-        role: "Full-stack developer",
+        role: "Junior Developer",
         company: "Freelance",
         companylogo: "/img/icons/common/freelancer.png",
-        date: "June 2014 – ",
-        desc: "Built solutions for various clients.",
+        date: "2015 - 2021",
+        desc: "Developed diverse web and mobile applications while mastering essential skills",
         descBullets: [
-            "Building front-end from designs and templates",
-            "Building responsive web and mobile applications",
-            "Writing python automatization scripts"
+            "Developed web and mobile apps using Java, PHP, JavaScript, and Python",
+            "Crafted efficient automation scripts for workflow optimization",
+            "Mastered client communication and project management skills",
+            "Implemented cybersecurity best practices in application development"
         ],
     },
     {
-        role: "Programmer",
+        role: "Full-Stack Web Developer",
         company: "Profitus",
         companylogo: "/img/icons/common/profitusLogo.png",
-        date: "September 2021 – June 2022",
-        desc: "Mailtaining and developing new features for fast growing fintech startup",
+        date: "2021 - 2022",
+        desc: "Contributed to platform development in fintech startup environment",
         descBullets: [
-            "Develop both front-end and backend",
-            "HTML, CSS, JAVASCRIPT and PHP",
-            "Python automatization scripts",
+            "Maintained and enhanced existing platform with new features",
+            "Contributed to new platform architecture using cloud and SPA technologies",
+            "Built robust solutions using PHP, JavaScript, React, and MySQL",
+            "Participated in agile ceremonies and code reviews"
         ]
     },
     {
-        role: "Software Engineer",
-        company: "Dobele Media",
-        companylogo: "/img/icons/common/dobeleLogo.png",
-        date: "June 2022 –",
-        desc: "Developing and maintaining various projects",
+        role: "Senior Software Engineer",
+        company: "Freelance",
+        companylogo: "/img/icons/common/freelancer.png",
+        date: "2022 - Present",
+        desc: "Designing and implementing diverse software solutions",
         descBullets: [
-            "Finding solutions for highly customized backend services",
-            "Contributing to open source projects used in the company",
-            "Creating SAAS products from scratch"
+            "Architected software solutions for affiliate marketing and analytics",
+            "Developed internal tools, landing pages, and SaaS products",
+            "Created ETL pipelines and custom analytics dashboards",
+            "Implemented ML solutions and contributed to open-source projects"
         ]
     }
 ];
