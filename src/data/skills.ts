@@ -30,8 +30,12 @@ export const skillBadges = [
         fontAwesomeClassname: "logos:laravel",
     },
     {
-        skillName: "Cakephp",
-        fontAwesomeClassname: "logos:cakephp",
+        skillName: "Rest API",
+        fontAwesomeClassname: "logos:rest",
+    },
+    {
+        skillName: "Open AI",
+        fontAwesomeClassname: "logos:openai",
     },
     {
         skillName: "reactjs",
@@ -40,14 +44,6 @@ export const skillBadges = [
     {
         skillName: "nodejs",
         fontAwesomeClassname: "logos:nodejs-icon",
-    },
-    {
-        skillName: "flutter",
-        fontAwesomeClassname: "logos:flutter",
-    },
-    {
-        skillName: "npm",
-        fontAwesomeClassname: "vscode-icons:file-type-npm",
     },
     {
         skillName: "sql-database",
@@ -106,5 +102,9 @@ export const proficiency = [
     {
         subject: "Cybersecurity",
         description: "Used to play CTFs and have a good understanding of how to secure systems.",
+    },
+    {
+        subject: "Machine Learning",
+        description: "I have a lot of experience in machine learning and have a good understanding of the technology.",
     }
 ];
