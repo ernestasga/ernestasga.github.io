@@ -105,6 +105,6 @@ export const proficiency = [
     },
     {
         subject: "Machine Learning",
-        description: "I have a lot of experience in machine learning and have a good understanding of the technology.",
+        description: "I have a lot of npm run devexperience in machine learning and have a good understanding of the technology.",
     }
 ];

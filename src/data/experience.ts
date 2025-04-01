@@ -9,7 +9,7 @@ export const experienceContent = {
 
 export const experienceJobs: ExperienceJob[] = [
     {
-        role: "Junior Developer",
+        role: "Junior-Mid Developer",
         company: "Freelance",
         companylogo: "/img/icons/common/freelancer.png",
         date: "2015 - 2021",
@@ -35,11 +35,11 @@ export const experienceJobs: ExperienceJob[] = [
         ]
     },
     {
-        role: "Senior Software Engineer",
+        role: "Software Engineer",
         company: "Freelance",
         companylogo: "/img/icons/common/freelancer.png",
         date: "2022 - Present",
-        desc: "Designing and implementing diverse software solutions",
+        desc: "Designing and implementing diverse software solutions, solving complex problems",
         descBullets: [
             "Architected software solutions for affiliate marketing and analytics",
             "Developed internal tools, landing pages, and SaaS products",

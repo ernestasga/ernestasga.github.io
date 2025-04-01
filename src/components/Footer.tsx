@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-row md:flex-col justify-between gap-8">
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
                     <Image
                         src={footerContent.avatar_url}
                         alt="profile pic"
