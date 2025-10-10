@@ -1,3 +1,13 @@
+# Robots.txt for Ernestas Garjonis Portfolio
+# https://ernestasga.github.io
+
 User-agent: *
-Allow: /*
-Host: developer-portfolio-1hanzla100.vercel.app
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/
+
+# Sitemap location
+Sitemap: https://ernestasga.github.io/sitemap.xml
+
+# Host
+Host: https://ernestasga.github.io
