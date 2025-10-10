@@ -63,9 +63,9 @@ const Navigation: React.FC = () => {
     }, [isSticky]);
 
     return (
-        <nav ref={navRef} className={`${isSticky ? 'fixed bg-bg-dark text-white' : 'relative'} top-0 w-full z-50 shadow px-4 py-2 transition-[top] duration-1000 ease-in-out`}>
-            <div className="max-w-6xl conainer mx-auto">
-                <div className={`flex justify-between items-center  md:space-x-10 ${mobileMenuOpen && 'hidden'}`}>
+        <nav ref={navRef} className={`${isSticky ? 'fixed glass shadow-lg' : 'relative bg-transparent'} top-0 w-full z-50 px-4 py-3 transition-all duration-500 ease-in-out`}>
+            <div className="max-w-7xl container mx-auto">
+                <div className={`flex justify-between items-center md:space-x-10 ${mobileMenuOpen && 'hidden'}`}>
                     <div id="nav-title" className="flex justify-start lg:w-0 lg:flex-1 text-3xl">
                         <Link href={navigationItems[0].path}>{navigationItems[0].name}</Link>
                     </div>
@@ -80,53 +80,97 @@ const Navigation: React.FC = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </button>
                     </div>
-                    <div className="hidden md:flex items-center justify-end space-x-10">
+                    <div className="hidden md:flex items-center justify-end space-x-8">
                         {navigationItems.map((item, index) => item.visible !== false && (
-                            <Link key={index} href={item.path} className='hover:scale-110 hover:text-primary'>
+                            <Link key={index} href={item.path} className='relative group font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors'>
                                 {item.name}
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                             </Link>
                         ))}
                     </div>
-                    <div className="hidden md:flex flex-row items-center gap-4 my-4">
+                    <div className="hidden md:flex flex-row items-center gap-4">
                         {socialItems.map((item, index) => (item.visible !== false && item.icon) && (
-                            <Link key={index} href={item.path} className="hover:scale-125 hover:text-secondary">
-                                <FontAwesomeIcon icon={item.icon} />
+                            <Link key={index} href={item.path} className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-primary-500/10 dark:hover:bg-primary-400/10 hover:scale-110 transition-all" target="_blank">
+                                <FontAwesomeIcon icon={item.icon} className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400" />
                             </Link>
                         ))}
-                        <div className="ml-4">
+                        <div className="ml-2 pl-4 border-l border-gray-300 dark:border-gray-700">
                             <ThemeSwitcher />
                         </div>
                     </div>                
                 </div>
             </div>
 
-            {/* Mobile menu, toggle classes based on menu state. */}
-            <div ref={mobileMenuRef} className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-bg-light text-text-light absolute top-2 left-8 right-8 p-8 rounded-xl`}>
-                <div id="nav-title" className="flex justify-between lg:w-0 lg:flex-1 text-2xl mb-4">
-                    <Link href={navigationItems[0].path}>{navigationItems[0].name}</Link>
+            {/* Mobile menu - Modern glass design */}
+            <div
+                ref={mobileMenuRef}
+                className={`${mobileMenuOpen ? 'block animate-in fade-in slide-in-from-top-5 duration-200' : 'hidden'} md:hidden absolute top-2 left-4 right-4 p-6 rounded-2xl glass-card shadow-2xl border-2 border-gray-200/50 dark:border-white/10`}
+            >
+                {/* Header */}
+                <div className="flex justify-between items-center mb-6">
+                    <div id="nav-title" className="text-2xl gradient-text">
+                        <Link href={navigationItems[0].path} onClick={() => setMobileMenuOpen(false)}>
+                            {navigationItems[0].name}
+                        </Link>
+                    </div>
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         type="button"
+                        className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-red-500/10 text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-all"
                         aria-expanded="false"
                     >
                         <span className="sr-only">Close menu</span>
-                        <FontAwesomeIcon icon={faTimes} />
+                        <FontAwesomeIcon icon={faTimes} className="text-xl" />
                     </button>
                 </div>
-                <hr className="border-1 border-gray-400 my-2" />
-                <div className="flex flex-col items-center gap-4 mt-4">
+
+                {/* Gradient divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent mb-6" />
+
+                {/* Navigation Links */}
+                <div className="flex flex-col gap-2 mb-6">
                     {navigationItems.map((item, index) => item.visible !== false && (
-                        <Link key={index} href={item.path}>
+                        <Link
+                            key={index}
+                            href={item.path}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="relative group px-4 py-3 rounded-lg text-center font-semibold text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 transition-all"
+                        >
                             {item.name}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-3/4 transition-all duration-300" />
                         </Link>
                     ))}
-                    <div className="flex flex-row gap-4 my-4">
-                        {socialItems.map((item, index) => (item.visible !== false && item.icon) && (
-                            <Link key={index} href={item.path}>
-                                <FontAwesomeIcon icon={item.icon} />
-                            </Link>
-                        ))}
-                    </div>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex flex-row justify-center gap-3 mb-6">
+                    {socialItems.map((item, index) => (item.visible !== false && item.icon) && (
+                        <Link
+                            key={index}
+                            href={item.path}
+                            target="_blank"
+                            className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:scale-110 hover:rotate-6 transition-all duration-300 group"
+                            style={{ backgroundColor: `${item.color}20` }}
+                        >
+                            {/* Glow effect on hover */}
+                            <div
+                                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"
+                                style={{ backgroundColor: `${item.color}40` }}
+                            />
+                            <FontAwesomeIcon
+                                icon={item.icon}
+                                className="text-lg group-hover:scale-110 transition-transform"
+                                style={{ color: item.color }}
+                            />
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Gradient divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-secondary-500 to-transparent mb-6" />
+
+                {/* Theme Switcher */}
+                <div className="flex justify-center">
                     <ThemeSwitcher />
                 </div>
             </div>
