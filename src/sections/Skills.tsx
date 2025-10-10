@@ -1,67 +1,134 @@
 "use client"
 
 import React from 'react'
-import { Icon } from "@iconify/react";
+import { motion } from 'framer-motion'
 import { skillsContent, skillBadges, skills, proficiency } from '@/data/skills'
-import Lottie from 'react-lottie-player';
-import webdevAnimation from '@/lottie/webdev.json'
-import buildAnimation from '@/lottie/build.json'
+import SkillCard from '@/components/SkillCard'
 
 const Skills: React.FC = () => {
-    console.log(skills.length)
     return (
-        <section id="what-i-do">
-            <div className="flex flex-col justify-center text-center gap-6">
-                <h2 className="text-4xl">{skillsContent.title}</h2>
-                <p>{skillsContent.description}</p>
-                <div className="flex flex-row flex-wrap justify-center gap-4">
-                    {skillBadges.map((item, index) => (
-                        <Icon
-                            key={index}
-                            className='text-2xl'
-                            icon={
-                                item.fontAwesomeClassname
-                            }
-                            data-inline="false"
-                        ></Icon>
-                    ))}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
-                    <div className="flex flex-col gap-4">
-                        <Lottie
-                            loop
-                            animationData={webdevAnimation}
-                            play
-                            style={{ width: '100%', height: '100%' }}
-                        />
+        <section id="what-i-do" className="py-20 px-4 relative">
+            <div className="container mx-auto">
+                {/* Section Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        <span className="gradient-text">{skillsContent.title}</span>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
+                    >
+                        {skillsContent.description}
+                    </motion.p>
+                </motion.div>
+
+                {/* Tech Stack Grid - Compact */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="mb-16"
+                >
+                    <h3 className="text-xl font-bold text-center mb-6 text-gray-800 dark:text-gray-200">
+                        Technologies & Tools
+                    </h3>
+                    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3 max-w-5xl mx-auto">
+                        {skillBadges.map((item, index) => (
+                            <SkillCard
+                                key={index}
+                                icon={item.fontAwesomeClassname}
+                                name={item.skillName}
+                                index={index}
+                            />
+                        ))}
                     </div>
-                    <div className="flex flex-col gap-4">
+                </motion.div>
+
+                {/* What I Do Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
+                    {/* Left - Skills List */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="space-y-4"
+                    >
+                        <h3 className="text-3xl font-bold mb-6 gradient-text">
+                            What I Bring to the Table
+                        </h3>
                         {skills.map((item, index) => (
-                            <p key={index} className={`text-left ${index + 1 === skills.length && 'font-bold'}`}>
-                                {item}
-                            </p>
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                className="glass-card group cursor-pointer"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-4 transition-all duration-300" />
+                                    <p className="text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                        {item}
+                                    </p>
+                                </div>
+                            </motion.div>
                         ))}
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
-                    <div className="flex flex-col gap-4 text-left">
-                        <h3 className="text-4xl">{skillsContent.proficiencyTitle}</h3>
+                    </motion.div>
+
+                    {/* Right - Proficiency Cards */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="space-y-6"
+                    >
+                        <h3 className="text-3xl font-bold mb-6 gradient-text">
+                            {skillsContent.proficiencyTitle}
+                        </h3>
                         {proficiency.map((item, index) => (
-                            <div key={index} className="flex flex-col">
-                                <h4 className="font-bold uppercase">{item.subject}</h4>
-                                <p className="text-sm">{item.description}</p>
-                            </div>
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                whileHover={{ scale: 1.02 }}
+                                className="glass-card group cursor-pointer relative overflow-hidden"
+                            >
+                                {/* Progress bar animation */}
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                                <h4 className="text-xl font-bold text-primary-600 dark:text-primary-400 mb-2 uppercase tracking-wide">
+                                    {item.subject}
+                                </h4>
+                                <p className="text-gray-600 dark:text-gray-400">
+                                    {item.description}
+                                </p>
+                            </motion.div>
                         ))}
-                    </div>
-                    <div className="flex flex-col gap-4">
-                        <Lottie
-                            loop
-                            animationData={buildAnimation}
-                            play
-                            style={{ width: '100%', height: '100%' }}
-                        />
-                    </div>
+                    </motion.div>
                 </div>
+
+                {/* Decorative gradient blob */}
+                <div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-br from-primary-500/10 to-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-gradient-to-br from-accent-500/10 to-primary-500/10 rounded-full blur-3xl pointer-events-none" />
             </div>
         </section>
     )

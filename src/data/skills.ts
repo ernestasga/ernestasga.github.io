@@ -1,28 +1,36 @@
 export const skillsContent = {
     title: "What I do",
-    description: "Versatile software engineer with 8+ years of experience in developing web and mobile applications. I have a passion for learning and keeping up to date with the latest tech.",
+    description: "Versatile software engineer with 10+ years of experience in developing web and mobile applications. I have a passion for learning and keeping up to date with the latest tech.",
     proficiencyTitle: "Proficiency",
 }
 
 export const skillBadges = [
     {
-        skillName: "html-5",
-        fontAwesomeClassname: "vscode-icons:file-type-html",
+        skillName: "TypeScript",
+        fontAwesomeClassname: "logos:typescript-icon",
     },
     {
-        skillName: "css3",
-        fontAwesomeClassname: "vscode-icons:file-type-css",
+        skillName: "React",
+        fontAwesomeClassname: "logos:react",
     },
     {
-        skillName: "sass",
-        fontAwesomeClassname: "logos:sass",
+        skillName: "Next.js",
+        fontAwesomeClassname: "logos:nextjs-icon",
     },
     {
-        skillName: "JavaScript",
-        fontAwesomeClassname: "logos:javascript",
+        skillName: "Node.js",
+        fontAwesomeClassname: "logos:nodejs-icon",
     },
     {
-        skillName: "Php",
+        skillName: "Python",
+        fontAwesomeClassname: "logos:python",
+    },
+    {
+        skillName: "Django",
+        fontAwesomeClassname: "logos:django-icon",
+    },
+    {
+        skillName: "PHP",
         fontAwesomeClassname: "logos:php",
     },
     {
@@ -30,81 +38,73 @@ export const skillBadges = [
         fontAwesomeClassname: "logos:laravel",
     },
     {
-        skillName: "Rest API",
-        fontAwesomeClassname: "logos:rest",
+        skillName: "PostgreSQL",
+        fontAwesomeClassname: "logos:postgresql",
     },
     {
-        skillName: "Open AI",
-        fontAwesomeClassname: "logos:openai",
+        skillName: "MongoDB",
+        fontAwesomeClassname: "logos:mongodb-icon",
     },
     {
-        skillName: "reactjs",
-        fontAwesomeClassname: "vscode-icons:file-type-reactjs",
+        skillName: "Docker",
+        fontAwesomeClassname: "logos:docker-icon",
     },
     {
-        skillName: "nodejs",
-        fontAwesomeClassname: "logos:nodejs-icon",
+        skillName: "Kubernetes",
+        fontAwesomeClassname: "logos:kubernetes",
     },
     {
-        skillName: "sql-database",
-        fontAwesomeClassname: "vscode-icons:file-type-sql",
-    },
-    {
-        skillName: "aws",
+        skillName: "AWS",
         fontAwesomeClassname: "logos:aws",
     },
     {
-        skillName: "python",
-        fontAwesomeClassname: "logos:python",
-    },
-    {
-        skillName: "django",
-        fontAwesomeClassname: "logos:django",
-    },
-    {
-        skillName: "git",
+        skillName: "Git",
         fontAwesomeClassname: "logos:git-icon",
     },
     {
-        skillName: "docker",
-        fontAwesomeClassname: "logos:docker-icon",
+        skillName: "Linux",
+        fontAwesomeClassname: "logos:linux-tux",
+    },
+    {
+        skillName: "TailwindCSS",
+        fontAwesomeClassname: "logos:tailwindcss-icon",
     }
 ]
 
 export const skills = [
-    "⚡ Develop and maintain robust web and mobile applications",
-    "⚡ Develop and integrate APIs and microservices",
-    "⚡ Plan and design from UML diagrams to working applications",
-    "⚡ Create and maintain complex backend systems",
-    "⚡ Create efficient data pipelines, and analytics dashboards",
-    "⚡ Setup and maintain linux servers and docker environments",
-    "⚡ Integrate, train machine learning models into applications",
-    "⚡ Solve problems and find solutions"
+    "⚡ Architect and deliver production-ready web and mobile applications from concept to deployment",
+    "⚡ Design scalable RESTful APIs and microservices architectures that handle thousands of requests",
+    "⚡ Transform business requirements into technical solutions through comprehensive system design",
+    "⚡ Build and optimize high-performance backend systems with modern frameworks and best practices",
+    "⚡ Engineer data pipelines and interactive dashboards that turn raw data into actionable insights",
+    "⚡ Configure and maintain cloud infrastructure with Docker, Kubernetes, and CI/CD automation",
+    "⚡ Integrate AI/ML models into production applications, bridging the gap between research and reality",
+    "⚡ Rapidly diagnose and resolve complex technical challenges under pressure"
 ]
 
 export const proficiency = [
     {
-        subject: "Frontend",
-        description: "While I must admit, I'm not the best designer, I can still recreate designs from pictures and figma designs.",
+        subject: "Full-Stack Development",
+        description: "Proficient across the entire stack—from pixel-perfect UI implementation to complex backend architectures. I excel at turning Figma designs and wireframes into production-ready applications with clean, maintainable code.",
     },
     {
-        subject: "Backend",
-        description: "I have a lot of experience in backend development with various stacks.",
+        subject: "Backend & APIs",
+        description: "Deep expertise in building scalable server-side systems. From RESTful APIs to real-time WebSocket services, I design architectures that are performant, secure, and maintainable at scale.",
     },
     {
-        subject: "Linux",
-        description: "Daily user and tinkerer of linux systems. I have a homelab with various linux servers and docker environments.",
+        subject: "DevOps & Infrastructure",
+        description: "Hands-on experience with Linux administration, Docker containerization, and Kubernetes orchestration. I maintain a sophisticated homelab running multi-node clusters, giving me real-world ops experience beyond theory.",
     },
     {
-        subject: "Docker",
-        description: "I use docker for all my projects and have a good understanding of the technology.",
+        subject: "Security-First Mindset",
+        description: "Trained through competitive CTF challenges and security research. I write code with security baked in from the start, understanding both defensive measures and potential attack vectors.",
     },
     {
-        subject: "Cybersecurity",
-        description: "Used to play CTFs and have a good understanding of how to secure systems.",
+        subject: "Cloud & Automation",
+        description: "AWS certified with practical experience deploying and managing cloud infrastructure. I automate repetitive tasks and create efficient CI/CD pipelines that accelerate development cycles.",
     },
     {
-        subject: "Machine Learning",
-        description: "I have a lot of npm run devexperience in machine learning and have a good understanding of the technology.",
+        subject: "AI/ML Integration",
+        description: "Practical experience implementing machine learning models in production environments. I bridge the gap between data science and software engineering, making AI solutions accessible and scalable.",
     }
 ];

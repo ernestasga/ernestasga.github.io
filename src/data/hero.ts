@@ -3,10 +3,11 @@ const heroContent = {
 	title: "Hi, I'm Ernestas",
 	subtitle: "Full-Stack Developer | Blockchain, Cybersecurity & AI Enthusiast",
 	description:
-		`Technology has always been more than a career—it's my passion. From a young age, I’ve been driven by curiosity to understand how things work, constantly exploring ways to innovate and improve. 
-		As a self-taught developer, I’ve built a strong foundation in full-stack development while diving deep into emerging fields like blockchain, cybersecurity, and machine learning. 
-		My homelab serves as both a playground for experimentation and a testament to my dedication to hands-on learning.
-		When I'm not solving complex problems or building solutions, I enjoy gaming or refining my technical skills.`,
+		`Experienced full-stack developer with 10+ years of building production-grade web applications and scalable systems.
+		Proven expertise in modern JavaScript frameworks, cloud infrastructure, and DevOps practices.
+		Self-driven problem solver with a track record of delivering complex projects from concept to deployment.
+		Passionate about emerging technologies including blockchain, cybersecurity, and machine learning—constantly expanding my skill set through hands-on experimentation and real-world implementation.`,
+	skills: ['React', 'Node.js', 'Python', 'Django', 'TypeScript', 'Docker'],
 	resumeText: "SEE MY RESUME / CV",
 	resumeLink: "/files/Ernestas_Garjonis_resume_2025.pdf",
 };
