@@ -6,6 +6,7 @@ import { ThemeProvider } from './theme-provider'
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import Footer from '@/components/Footer'
 import ScrollToTopFab from '@/components/ScrollToTopFab'
+import StructuredData from '@/components/StructuredData'
 import seoConfig from '@/data/seo'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${inter.className} bg-bg-light text-text-light dark:bg-bg-dark dark:text-text-dark duration-700`}
       >
