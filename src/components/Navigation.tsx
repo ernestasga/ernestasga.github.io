@@ -63,8 +63,8 @@ const Navigation: React.FC = () => {
     }, [isSticky]);
 
     return (
-        <nav ref={navRef} className={`${isSticky ? 'fixed glass shadow-lg' : 'relative bg-transparent'} top-0 w-full z-50 px-4 py-3 transition-all duration-500 ease-in-out`}>
-            <div className="max-w-7xl container mx-auto">
+        <nav ref={navRef} className={`${isSticky ? 'fixed glass shadow-lg' : 'relative bg-transparent'} top-0 left-0 right-0 z-50 py-3 transition-all duration-500 ease-in-out`}>
+            <div className="max-w-7xl mx-auto px-4">
                 <div className={`flex justify-between items-center md:space-x-10 ${mobileMenuOpen && 'hidden'}`}>
                     <div id="nav-title" className="flex justify-start lg:w-0 lg:flex-1 text-3xl">
                         <Link href={navigationItems[0].path}>{navigationItems[0].name}</Link>

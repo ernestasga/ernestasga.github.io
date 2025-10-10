@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-12">
       {/* Particle Background */}
       <ParticleBackground />
 
@@ -147,25 +147,49 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
-              className="flex flex-row gap-4 flex-wrap items-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-center"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
                 <button
                   onClick={openModal}
-                  className="magnetic-button flex items-center gap-2"
+                  className="magnetic-button flex items-center justify-center gap-2 w-full"
                 >
                   <FontAwesomeIcon icon={faFile} />
                   <span>View Resume</span>
                 </button>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
                 <Link
                   href="#projects"
-                  className="px-8 py-4 rounded-full font-semibold border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-500 hover:text-white dark:hover:text-white transition-all duration-300"
+                  className="px-8 py-4 rounded-full font-semibold border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-500 hover:text-white dark:hover:text-white transition-all duration-300 flex items-center justify-center w-full"
                 >
                   View Projects
                 </Link>
+              </motion.div>
+
+              {/* Scroll Indicator - Mobile only, below buttons */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 1 }}
+                className="sm:hidden mt-4"
+              >
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="flex flex-col items-center gap-2 text-gray-400"
+                >
+                  <FontAwesomeIcon icon={faArrowDown} className="text-xl" />
+                </motion.div>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -175,7 +199,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative flex items-center justify-center mt-8 lg:mt-0 w-full"
           >
             <motion.div
               animate={{
@@ -186,15 +210,15 @@ const Hero: React.FC = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="relative w-full max-w-lg"
+              className="relative w-full max-w-lg px-4 sm:px-0"
             >
               {/* Glowing card */}
-              <div className="glass-card p-8 relative overflow-hidden group">
+              <div className="glass-card p-4 sm:p-8 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative z-10 space-y-6">
+                <div className="relative z-10 space-y-4 sm:space-y-6">
                   {/* Code-like decoration */}
-                  <div className="font-mono text-sm space-y-2 text-gray-600 dark:text-gray-400">
+                  <div className="font-mono text-xs sm:text-sm space-y-2 text-gray-600 dark:text-gray-400 overflow-x-auto">
                     <div className="flex items-center gap-2">
                       <span className="text-accent-500">const</span>
                       <span className="text-secondary-500">developer</span>
@@ -243,12 +267,12 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Desktop only, at bottom center */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="hidden sm:flex absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}

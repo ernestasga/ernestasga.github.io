@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navigation />
-          <main className='container mx-auto'>{children}</main>
+          <main className='w-full overflow-x-hidden'>{children}</main>
           <Footer />
           <ScrollToTopFab />
         </ThemeProvider>

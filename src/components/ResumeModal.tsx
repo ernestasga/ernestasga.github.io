@@ -42,14 +42,15 @@ const ResumeModal: React.FC<ResumeModalProps> = ({
   // Initialize position and size only on first open
   useEffect(() => {
     if (isOpen && !hasInitialized.current) {
-      const defaultWidth = 1200;
-      const defaultHeight = window.innerHeight - 100; // Use most of viewport height
-      const centerX = (window.innerWidth - defaultWidth) / 2;
-      const centerY = (window.innerHeight - defaultHeight) / 2;
+      const isMobile = window.innerWidth < 1024; // lg breakpoint
+      const defaultWidth = isMobile ? window.innerWidth : 1200;
+      const defaultHeight = window.innerHeight - (isMobile ? 0 : 100);
+      const centerX = isMobile ? 0 : (window.innerWidth - defaultWidth) / 2;
+      const centerY = isMobile ? 0 : (window.innerHeight - defaultHeight) / 2;
       setPosition({ x: Math.max(0, centerX), y: Math.max(0, centerY) });
       setSize({
-        width: Math.min(defaultWidth, window.innerWidth - 64),
-        height: Math.min(defaultHeight, window.innerHeight - 64)
+        width: isMobile ? window.innerWidth : Math.min(defaultWidth, window.innerWidth - 64),
+        height: isMobile ? window.innerHeight : Math.min(defaultHeight, window.innerHeight - 64)
       });
       setIsMinimized(false);
       hasInitialized.current = true;
@@ -119,8 +120,8 @@ const ResumeModal: React.FC<ResumeModalProps> = ({
             />
           )}
 
-          {/* Modal - Draggable & Resizable */}
-          <div className="fixed inset-0 z-[9999] pointer-events-none">
+          {/* Modal - Draggable & Resizable (Desktop only) */}
+          <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
             <Rnd
               position={position}
               size={size}
@@ -132,16 +133,18 @@ const ResumeModal: React.FC<ResumeModalProps> = ({
                 });
                 setPosition(newPosition);
               }}
-              minWidth={600}
-              minHeight={400}
+              minWidth={typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : 600}
+              minHeight={typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : 400}
               bounds="parent"
               dragHandleClassName="drag-handle"
-              className="pointer-events-auto"
+              className="pointer-events-auto overflow-hidden"
               style={{ display: isMinimized ? 'none' : 'block' }}
+              disableDragging={typeof window !== 'undefined' && window.innerWidth < 1024}
+              enableResizing={typeof window !== 'undefined' && window.innerWidth >= 1024 ? undefined : false}
             >
-              <div className="w-full h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+              <div className="w-full h-full flex flex-col bg-white dark:bg-gray-900 lg:rounded-2xl shadow-2xl border-0 lg:border border-gray-200 dark:border-gray-800 overflow-hidden">
                 {/* macOS Title Bar */}
-                <div className="drag-handle flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 cursor-move">
+                <div className="drag-handle flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 lg:cursor-move">
                   {/* Traffic Lights */}
                   <div className="flex items-center gap-2">
                     <button
@@ -195,8 +198,8 @@ const ResumeModal: React.FC<ResumeModalProps> = ({
                     </div>
                   </div>
 
-                  {/* Sidebar - Stats & Fun */}
-                  <div className="w-72 flex-shrink-0 p-4 bg-gray-50 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
+                  {/* Sidebar - Stats & Fun (Desktop only) */}
+                  <div className="hidden lg:block w-72 flex-shrink-0 p-4 bg-gray-50 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
                     <QuickStats
                       viewTime={viewTime}
                       viewCount={viewCount}
@@ -206,21 +209,21 @@ const ResumeModal: React.FC<ResumeModalProps> = ({
                 </div>
 
                 {/* Action Bar */}
-                <div className="flex flex-wrap items-center justify-center gap-2 p-4 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex flex-wrap items-center justify-center gap-2 p-3 lg:p-4 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
                   {actions.map((action) => (
                     <motion.button
                       key={action.label}
                       onClick={action.onClick}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all group"
+                      className="flex items-center gap-2 px-3 lg:px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all group"
                     >
                       <FontAwesomeIcon
                         icon={action.icon}
                         className="text-sm"
                         style={{ color: action.color }}
                       />
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
+                      <span className="text-xs lg:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                         {action.label}
                       </span>
                     </motion.button>
