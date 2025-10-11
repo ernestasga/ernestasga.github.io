@@ -22,7 +22,7 @@ export const faqData: FAQItem[] = [
   },
   {
     question: "What makes Ernestas Garjonis stand out as a developer?",
-    answer: "Ernestas combines deep technical expertise with a proven track record of delivering business results. He has increased system performance by 60%+, achieved 99.9% uptime on production systems, and built solutions that have generated millions in revenue. His expertise in emerging technologies like AI, blockchain, and cloud-native architecture sets him apart."
+    answer: "Ernestas combines deep technical expertise with a proven track record of delivering business results. His expertise in emerging technologies like AI, blockchain, and cloud-native architecture sets him apart."
   },
   {
     question: "Where is Ernestas Garjonis located?",

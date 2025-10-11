@@ -96,7 +96,7 @@ export const timelineMilestones: TimelineMilestone[] = [
     year: "2021-2022",
     title: "Corporate Experience",
     subtitle: "Full-Stack Developer @ Profitus",
-    description: "Applied skills in fast-paced FinTech startup, working on payment processing platform with modern tech stack and agile methodologies.",
+    description: "Applied skills in fast-paced FinTech startup, working on payment processing platform with modern tech stack.",
     icon: faBriefcase,
     side: 'left',
     achievements: [

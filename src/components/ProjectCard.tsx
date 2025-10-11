@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { type Project } from '@/types/project';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,19 +20,31 @@ const statusConfig = {
   archived: { color: '#6b7280', label: 'Archived', glow: 'rgba(107, 114, 128, 0.3)' }
 };
 
-const ProjectCard: React.FC<Props> = ({ item, index }) => {
+const ProjectCard: React.FC<Props> = React.memo(({ item, index }) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const cardRef = useRef<HTMLDivElement>(null);
-    const status = statusConfig[item.status];
+    const rafRef = useRef<number | null>(null);
+    const status = useMemo(() => statusConfig[item.status], [item.status]);
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         if (!cardRef.current) return;
-        const rect = cardRef.current.getBoundingClientRect();
-        setMousePosition({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
+
+        // Cancel previous RAF if it exists
+        if (rafRef.current !== null) {
+            cancelAnimationFrame(rafRef.current);
+        }
+
+        // Throttle using RAF
+        rafRef.current = requestAnimationFrame(() => {
+            if (!cardRef.current) return;
+            const rect = cardRef.current.getBoundingClientRect();
+            setMousePosition({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            });
+            rafRef.current = null;
         });
-    };
+    }, []);
 
     return (
         <motion.div
@@ -163,7 +175,9 @@ const ProjectCard: React.FC<Props> = ({ item, index }) => {
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
         </motion.div>
-    )
-}
+    );
+});
+
+ProjectCard.displayName = 'ProjectCard';
 
 export default ProjectCard;

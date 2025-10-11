@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from "@iconify/react";
 
@@ -10,30 +10,44 @@ interface SkillCardProps {
   index: number;
 }
 
-const SkillCard: React.FC<SkillCardProps> = ({ icon, name, index }) => {
+const SkillCard: React.FC<SkillCardProps> = React.memo(({ icon, name, index }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Cancel previous RAF if it exists
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+    }
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    // Throttle using RAF for smooth 60fps updates
+    rafRef.current = requestAnimationFrame(() => {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    const rotateXValue = ((y - centerY) / centerY) * -10;
-    const rotateYValue = ((x - centerX) / centerX) * 10;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    setRotateX(rotateXValue);
-    setRotateY(rotateYValue);
-  };
+      const rotateXValue = ((y - centerY) / centerY) * -10;
+      const rotateYValue = ((x - centerX) / centerX) * 10;
 
-  const handleMouseLeave = () => {
+      setRotateX(rotateXValue);
+      setRotateY(rotateYValue);
+      rafRef.current = null;
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     setRotateX(0);
     setRotateY(0);
-  };
+  }, []);
 
   return (
     <motion.div
@@ -83,6 +97,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon, name, index }) => {
       </motion.div>
     </motion.div>
   );
-};
+});
+
+SkillCard.displayName = 'SkillCard';
 
 export default SkillCard;

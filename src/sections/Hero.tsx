@@ -17,12 +17,38 @@ const Hero: React.FC = () => {
   const { isOpen, openModal, closeModal, viewTime, viewCount, achievements } = useResumeModal();
 
   useEffect(() => {
+    let rafId: number | null = null;
+    let lastUpdate = 0;
+    const THROTTLE_MS = 16; // ~60fps max update rate
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const now = performance.now();
+
+      // Throttle updates to max 60fps
+      if (now - lastUpdate < THROTTLE_MS) {
+        return;
+      }
+
+      // Use RAF to batch DOM updates
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+
+      rafId = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        lastUpdate = now;
+        rafId = null;
+      });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   const typingTexts = [

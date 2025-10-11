@@ -19,7 +19,7 @@ const statusConfig = {
   archived: { color: '#6b7280', label: 'Archived', glow: 'rgba(107, 114, 128, 0.3)' }
 };
 
-const FeaturedProjectCard: React.FC<Props> = ({ project, index }) => {
+const FeaturedProjectCard: React.FC<Props> = React.memo(({ project, index }) => {
   const status = statusConfig[project.status];
 
   return (
@@ -202,6 +202,8 @@ const FeaturedProjectCard: React.FC<Props> = ({ project, index }) => {
       </motion.div>
     </motion.div>
   );
-};
+});
+
+FeaturedProjectCard.displayName = 'FeaturedProjectCard';
 
 export default FeaturedProjectCard;
