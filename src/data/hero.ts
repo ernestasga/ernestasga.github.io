@@ -9,7 +9,7 @@ const heroContent = {
 		Passionate about emerging technologies including blockchain, cybersecurity, and machine learning—constantly expanding my skill set through hands-on experimentation and real-world implementation.`,
 	skills: ['React', 'Node.js', 'Python', 'Django', 'TypeScript', 'Docker'],
 	resumeText: "SEE MY RESUME / CV",
-	resumeLink: "/files/Ernestas_Garjonis_resume_2025.pdf",
+	resumeLink: "/files/ERNESTAS_GARJONIS_Resume.pdf",
 };
 
 export default heroContent;
