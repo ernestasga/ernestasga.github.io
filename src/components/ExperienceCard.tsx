@@ -1,8 +1,8 @@
 "use client"
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import Color from "color-thief-react";
+import { useExtractColors } from 'react-extract-colors';
 import { type ExperienceJob } from '@/types/experience';
 import Image from 'next/image';
 
@@ -11,7 +11,15 @@ interface Props {
     index: number;
 }
 
-const ExperienceCard: React.FC<Props> = ({ item, index }) => {
+const ExperienceCard: React.FC<Props> = React.memo(({ item, index }) => {
+    const { dominantColor } = useExtractColors(item.companylogo, {
+        maxColors: 1,
+        format: 'hex'
+    });
+
+    // Memoize the base color to prevent recalculations
+    const baseColor = useMemo(() => dominantColor || '#6366f1', [dominantColor]);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -29,25 +37,18 @@ const ExperienceCard: React.FC<Props> = ({ item, index }) => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10" />
 
                 {/* Header with dynamic color */}
-                <Color src={item.companylogo} format='hex'>
-                    {(color) => {
-                        const baseColor = color.data || '#6366f1';
-                        return (
-                            <div
-                                className="relative px-6 py-4 text-white text-xl font-bold overflow-hidden"
-                                style={{
-                                    background: `linear-gradient(135deg, ${baseColor} 0%, #4f46e5 100%)`
-                                }}
-                            >
-                                <div className="relative z-10">{item.role}</div>
-                                {/* Animated background pattern */}
-                                <div className="absolute inset-0 opacity-10">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-                                </div>
-                            </div>
-                        );
+                <div
+                    className="relative px-6 py-4 text-white text-xl font-bold overflow-hidden"
+                    style={{
+                        background: `linear-gradient(135deg, ${baseColor} 0%, #4f46e5 100%)`
                     }}
-                </Color>
+                >
+                    <div className="relative z-10">{item.role}</div>
+                    {/* Animated background pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
+                    </div>
+                </div>
 
                 {/* Company Logo */}
                 <div className="flex justify-center -mt-12 mb-4 relative z-10">
@@ -112,7 +113,9 @@ const ExperienceCard: React.FC<Props> = ({ item, index }) => {
                 <div className="h-1 w-full bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </motion.div>
         </motion.div>
-    )
-}
+    );
+});
+
+ExperienceCard.displayName = 'ExperienceCard';
 
 export default ExperienceCard;

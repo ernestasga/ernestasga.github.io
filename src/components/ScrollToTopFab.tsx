@@ -2,23 +2,43 @@
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 
 const ScrollToTopFab: React.FC = () => {
   const [visible, setVisible] = useState(false)
+  const rafRef = useRef<number | null>(null)
+  const lastScrollTime = useRef(0)
 
   const checkScrollTop = useCallback(() => {
-    if (!visible && window.pageYOffset > 100) {
-      setVisible(true)
-    } else if (visible && window.pageYOffset <= 100) {
-      setVisible(false)
+    // Throttle to max once every 200ms
+    const now = performance.now()
+    if (now - lastScrollTime.current < 200) {
+      return
     }
-  }, [visible])
+    lastScrollTime.current = now
+
+    // Cancel previous RAF if exists
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current)
+    }
+
+    // Use RAF to batch DOM updates
+    rafRef.current = requestAnimationFrame(() => {
+      const scrollTop = window.pageYOffset
+      setVisible(scrollTop > 100)
+      rafRef.current = null
+    })
+  }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', checkScrollTop)
-    return () => { window.removeEventListener('scroll', checkScrollTop) }
-  })
+    window.addEventListener('scroll', checkScrollTop, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop)
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
+  }, [checkScrollTop])
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })

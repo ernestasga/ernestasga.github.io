@@ -10,7 +10,7 @@ interface Props {
   index: number;
 }
 
-const TimelineCard: React.FC<Props> = ({ milestone, index }) => {
+const TimelineCard: React.FC<Props> = React.memo(({ milestone, index }) => {
   const isLeft = milestone.side === 'left';
 
   return (
@@ -170,6 +170,8 @@ const TimelineCard: React.FC<Props> = ({ milestone, index }) => {
       </motion.div>
     </div>
   );
-};
+});
+
+TimelineCard.displayName = 'TimelineCard';
 
 export default TimelineCard;

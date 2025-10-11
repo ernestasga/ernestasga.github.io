@@ -125,36 +125,40 @@ export default function StructuredData() {
     ]
   };
 
+  const escapeJsonForScript = (obj: any) => {
+    return JSON.stringify(obj).replace(/</g, '\\u003c').replace(/>/g, '\\u003e');
+  };
+
   return (
     <>
       {/* Person Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonForScript(personSchema) }}
       />
 
       {/* Website Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonForScript(websiteSchema) }}
       />
 
       {/* Professional Service Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonForScript(professionalServiceSchema) }}
       />
 
       {/* FAQ Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonForScript(faqSchema) }}
       />
 
       {/* Breadcrumb Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonForScript(breadcrumbSchema) }}
       />
     </>
   );

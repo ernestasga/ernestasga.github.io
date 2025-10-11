@@ -73,7 +73,7 @@ const Navigation: React.FC = () => {
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             type="button"
-                            className="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 dark:text-white focus:outline-none"
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open menu</span>
@@ -159,7 +159,7 @@ const Navigation: React.FC = () => {
                             />
                             <FontAwesomeIcon
                                 icon={item.icon}
-                                className="text-lg group-hover:scale-110 transition-transform"
+                                className="text-lg group-hover:scale-110 transition-transform dark:!text-gray-100"
                                 style={{ color: item.color }}
                             />
                         </Link>
